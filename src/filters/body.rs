@@ -75,7 +75,7 @@ pub fn content_length_limit(limit: u64) -> impl Filter<Extract = (), Error = Rej
 /// This does not have a default size limit, it would be wise to use one to
 /// prevent a overly large request from using too much memory.
 pub fn stream(
-) -> impl Filter<Extract = (impl Stream<Item = Result<impl Buf, crate::Error>>,), Error = Rejection> + Copy
+) -> impl Filter<Extract = (impl Stream<Item = Result<Bytes, crate::Error>>,), Error = Rejection> + Copy
 {
     body().map(|body: Body| BodyStream { body })
 }
